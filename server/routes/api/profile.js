@@ -36,6 +36,7 @@ router.post('/', [auth, [
         return res.status(400).json({ errors:errors.array() });
     }
     
+    //Pull all fields out of the request.body(req.body)
     const {
         company,
         location,
@@ -57,6 +58,24 @@ router.post('/', [auth, [
       const profileFields = {};
       profileFields.user = req.user.id
       if(company) profileFields.company = company
+      if(location) profileFields.location = location
+      if(website) profileFields.website = website
+      if(bio) profileFields.bio = bio
+      if(skills){
+          profileFields.skills=skills.split(',').map(skill => skill.trim())
+      }
+      console.log(profileFields.skills);
+
+      res.send("hello");
+      if(status) profileFields.status = status
+      if(githubusername) profileFields.githubusername = githubusername
+      if(youtube) profileFields.youtube = youtube
+      if(twitter) profileFields.twitter = twitter
+      if(instagram) profileFields.instagram = instagram
+      if(linkedin) profileFields.linkedin = linkedin
+      if(facebook) profileFields.facebook =facebook
+
+      
 
       
 
