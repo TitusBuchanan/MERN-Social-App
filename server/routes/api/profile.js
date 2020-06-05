@@ -61,19 +61,47 @@ router.post('/', [auth, [
       if(location) profileFields.location = location
       if(website) profileFields.website = website
       if(bio) profileFields.bio = bio
+      if(status) profileFields.status = status
+      if(githubusername) profileFields.githubusername = githubusername
       if(skills){
           profileFields.skills=skills.split(',').map(skill => skill.trim())
       }
-      console.log(profileFields.skills);
+        //Build Social Object
+        profileFields.social = {}
+        if(youtube) profileFields.social.youtube = youtube
+        if(twitter) profileFields.social.twitter = twitter
+        if(instagram) profileFields.social.instagram = instagram
+        if(linkedin) profileFields.social.linkedin = linkedin
+        if(facebook) profileFields.social.facebook =facebook
+      
+        try {
+            let profile = await Profile.findOne({ user:req.user.id });
+
+            if(profile) {
+                //Update
+                profile = await Profile.findOneAndUpdate({ user:req.user.id }, { $set:profileFields }, { new:true });
+                
+                return res.json(profile);
+            }
+
+            //Create 
+            profile = new Profile(profileFields);
+
+            await profile.save();
+            res.json(profile);
+            
+
+        } catch(err){
+            console.error(err.message);
+            res.status(500).send('Server Error');
+        }
+       
 
       res.send("hello");
-      if(status) profileFields.status = status
-      if(githubusername) profileFields.githubusername = githubusername
-      if(youtube) profileFields.youtube = youtube
-      if(twitter) profileFields.twitter = twitter
-      if(instagram) profileFields.instagram = instagram
-      if(linkedin) profileFields.linkedin = linkedin
-      if(facebook) profileFields.facebook =facebook
+
+    
+     
+
 
       
 
