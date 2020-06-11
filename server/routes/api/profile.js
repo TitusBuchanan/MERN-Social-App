@@ -181,7 +181,18 @@ router.put('/experience', [auth, [
         return res.status(400).json({errors: errors.array()})
     }
 
-    const {title, company ,from , to , current, description} = req.body 
+    const {title, company ,location, from , to , current, description} = req.body;
+
+    const newExp = {
+        title,
+        company,
+        location,
+        from,
+        to,
+        current,
+        description
+
+    }
 });
 
 
