@@ -1,4 +1,6 @@
 {
     "mongoURI":"mongodb+srv://TitusB:Titus908@cluster0-juw0k.mongodb.net/test?retryWrites=true&w=majority",
-    "jwtSecret":"Teezus"
+    "jwtSecret":"Teezus",
+    "githubClientID":"1579b440f758e22f39ae",
+    "gitHubSecret":"65768fb6149aedd78a6cc0c798f0be4a8a1e32ed"
 }
