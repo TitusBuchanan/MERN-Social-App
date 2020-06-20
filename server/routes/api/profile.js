@@ -318,4 +318,7 @@ router.delete('/education/:edu_id',auth, async (req,res) => {
 
 
 
+
+
+
 module.exports = router;
