@@ -7,8 +7,8 @@ const Profile = require('../../models/Profile');
 const Post = require('../../models/Post');
 
 
-// @route       GET api/posts 
-// @description Test Route 
+// @route       POST api/posts 
+// @description Create a post
 // @access      Private
 router.post('/',[auth,[
     check('text','Text is required').not().isEmpty()
@@ -42,5 +42,20 @@ router.post('/',[auth,[
     
 }
 );
+
+// @route       GET api/posts 
+// @description Get All Posts
+// @access      Private
+
+router.get('/', auth, async (req,res) => {
+    try {
+        const posts = await Post.find().sort({ date: -1 })
+        res.json(posts)
+    } catch (error) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+});
+
 
 module.exports = router;
