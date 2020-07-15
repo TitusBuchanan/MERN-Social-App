@@ -8,7 +8,7 @@ const Post = require('../../models/Post');
 
 
 // @route       POST api/posts 
-// @description Create a post
+// @description Create a post      
 // @access      Private
 router.post('/',[auth,[
     check('text','Text is required').not().isEmpty()
