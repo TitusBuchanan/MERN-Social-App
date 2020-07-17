@@ -23,7 +23,7 @@ import { login } from '../../actions/auth'
     }      
         
 
-
+      
 
     return <Fragment>
         <h1 className="large text-primary">Sign In</h1>
@@ -57,6 +57,8 @@ import { login } from '../../actions/auth'
 Login.propTypes = {
   login: PropTypes.func.isRequired
 }
+
+
 
 
 export default connect(null, {login})(Login);
